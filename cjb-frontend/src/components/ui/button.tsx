@@ -10,16 +10,24 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+          "shadow-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary-light)] disabled:opacity-50"
+          + " "
+          + "bg-[var(--color-primary)] text-[var(--color-white)] hover:bg-[var(--color-primary-light)]",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "shadow-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-400 disabled:opacity-50"
+          + " "
+          + "bg-red-600 text-[var(--color-white)] hover:bg-red-700",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border shadow-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary-light)] disabled:opacity-50"
+          + " "
+          + "border-[var(--color-primary)] text-[var(--color-primary)] bg-transparent hover:bg-[var(--color-primary-light)] hover:text-[var(--color-black)]",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+          "shadow-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-secondary)] disabled:opacity-50"
+          + " "
+          + "bg-[var(--color-secondary)] text-[var(--color-black)] hover:bg-[var(--color-primary-light)] hover:text-[var(--color-black)]",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "transition hover:bg-[var(--color-primary-light)] hover:text-[var(--color-black)]",
+        link: "text-[var(--color-primary)] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

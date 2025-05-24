@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* === App Color Theme Variables === */
+@theme {
+  /* Brand Greens */
+  --color-green-dark: #24824a;
+  --color-green-light: #71bf44;
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-black: #141e28;
+  /* Accent */
+  --color-yellow: #fadd4a;
+
+  /* Semantic Aliases */
+  --color-primary: var(--color-green-dark);
+  --color-primary-light: var(--color-green-light);
+  --color-secondary: var(--color-yellow);
+}
+
 body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* You can customize this font stack if needed */
   /* Tailwind's Preflight (from @tailwind base) will handle basic body margins and background. */

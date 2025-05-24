@@ -67,3 +67,9 @@ A hyper-focused platform connecting software engineers (frontend & fullstack) wi
 - **Deployment:**
   - Frontend: Vercel or Netlify
   - Backend & DB: Railway.app, Heroku, or AWS/Google Cloud.
+
+## Other Ideas
+
+- Highlight companies that have recently listed jobs on main page
+- Community forum to help people connect. Job seekers, recruiters, companies, etc
+- some way to manage events

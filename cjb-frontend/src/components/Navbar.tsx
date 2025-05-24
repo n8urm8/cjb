@@ -71,9 +71,15 @@ const Navbar: React.FC = () => {
   ]);
 
   return (
-    <nav className="bg-blue-600 text-white p-4 shadow-md">
+    <nav
+      style={{
+        background: "var(--color-primary)",
+        color: "var(--color-white)",
+      }}
+      className="p-4 shadow-md"
+    >
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold">
+        <Link to="/" className="text-2xl font-bold" style={{ color: "var(--color-white)" }}>
           Charlotte Job Board
         </Link>
         <div className="flex items-center space-x-4">
@@ -87,7 +93,12 @@ const Navbar: React.FC = () => {
             <>
               <Link
                 to="/profile"
-                className="px-3 py-2 rounded hover:bg-blue-700"
+                className="px-3 py-2 rounded transition"
+                style={{
+                  color: "var(--color-white)",
+                }}
+                onMouseOver={e => (e.currentTarget.style.background = 'var(--color-primary-light)')}
+                onMouseOut={e => (e.currentTarget.style.background = 'transparent')}
               >
                 Profile
               </Link>
@@ -95,7 +106,13 @@ const Navbar: React.FC = () => {
               {userProfile && userProfile.role === "admin" && (
                 <Link
                   to="/admin"
-                  className="px-3 py-2 rounded hover:bg-green-700"
+                  className="px-3 py-2 rounded transition"
+                  style={{
+                    color: "var(--color-black)",
+                    background: "var(--color-secondary)",
+                  }}
+                  onMouseOver={e => (e.currentTarget.style.background = 'var(--color-primary-light)')}
+                  onMouseOut={e => (e.currentTarget.style.background = 'var(--color-secondary)')}
                 >
                   Admin Dashboard
                 </Link>

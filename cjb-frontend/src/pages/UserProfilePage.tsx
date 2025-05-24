@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useUpdateUserProfile, type UpdateUserProfilePayload } from '../hooks/userProfileHooks'; // Added UpdateUserProfilePayload
 import { useUserProfile } from '../context/UserProfileContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '@/components/ui/button';
 
 const UserProfilePage: React.FC = () => {
   const { mutate: updateUser, isPending: isPendingSavingProfile, isError: isSaveError, error: saveError } = useUpdateUserProfile();
@@ -119,21 +120,21 @@ const UserProfilePage: React.FC = () => {
             />
           </div>
           <div className="flex items-center space-x-3">
-            <button 
-              type="submit" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50"
+            <Button
+              type="submit"
               disabled={isPendingSavingProfile}
+              variant="default"
             >
               {isPendingSavingProfile ? 'Saving...' : 'Save Changes'}
-            </button>
-            <button 
-              type="button" 
-              onClick={handleEditToggle} 
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            </Button>
+            <Button
+              type="button"
+              onClick={handleEditToggle}
               disabled={isPendingSavingProfile}
+              variant="secondary"
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>
