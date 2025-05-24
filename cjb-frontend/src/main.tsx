@@ -4,6 +4,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
 import App from "./App.tsx";
+import { UserProfileProvider } from "./context/UserProfileContext";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -23,10 +25,15 @@ createRoot(document.getElementById("root")!).render(
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
+        audience: import.meta.env.VITE_AUTH0_API_AUDIENCE,
+        scope: "openid profile email read:jobs write:jobs",
       }}
     >
       <QueryClientProvider client={queryClient}>
-        <App />
+        <UserProfileProvider>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </UserProfileProvider>
       </QueryClientProvider>
     </Auth0Provider>
   </StrictMode>

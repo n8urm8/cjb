@@ -1,11 +1,74 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './auth/LoginButton';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { Link } from "react-router";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import LoginButton from "./auth/LoginButton";
+import LogoutButton from "./auth/LogoutButton";
+import { useUserProfile } from "../context/UserProfileContext";
+import { useFetchUserProfile } from "../hooks/userProfileHooks"; // Added import
 
 const Navbar: React.FC = () => {
-  const { isAuthenticated, user, isLoading } = useAuth0();
+  const { isAuthenticated, user, isLoading: isLoadingAuth } = useAuth0(); // Renamed isLoading to isLoadingAuth for clarity
+  const { setProfile, setIsLoadingProfile: setContextLoading } =
+    useUserProfile(); // Renamed setIsLoadingProfile for clarity
+
+  // Use the new hook to fetch profile data
+  const {
+    data: userProfile,
+    error: fetchProfileError,
+    isLoading: isLoadingProfileData,
+    isSuccess: isProfileFetchSuccess,
+    isError: isProfileFetchError,
+  } = useFetchUserProfile();
+
+  useEffect(() => {
+    if (!isAuthenticated && !isLoadingAuth) {
+      // If user is not authenticated and auth is not loading, clear profile and set context loading to false
+      setProfile(null);
+      setContextLoading(false);
+      return;
+    }
+
+    if (isLoadingAuth) {
+      // If auth is loading, reflect this in context (optional, as useFetchUserProfile has its own loading)
+      setContextLoading(true);
+      return;
+    }
+
+    // Handle states from useFetchUserProfile
+    if (isLoadingProfileData) {
+      setContextLoading(true);
+    } else if (isProfileFetchSuccess && userProfile) {
+      setProfile(userProfile);
+      setContextLoading(false);
+      console.log("User profile fetched via hook:", userProfile);
+    } else if (isProfileFetchError) {
+      console.error("Error fetching user profile via hook:", fetchProfileError);
+      setProfile(null);
+      setContextLoading(false);
+    } else if (
+      !isLoadingAuth &&
+      isAuthenticated &&
+      !isLoadingProfileData &&
+      !userProfile
+    ) {
+      // This case might indicate that the hook ran, finished, but found no profile (e.g., if backend returned nothing or error not caught by isError)
+      // Or if the hook was disabled and then enabled but hasn't fetched yet.
+      // For safety, ensure loading is false if not actively loading and no profile.
+      setContextLoading(false);
+      setProfile(null); // Ensure profile is null if no data and not loading
+    }
+  }, [
+    isAuthenticated,
+    isLoadingAuth,
+    userProfile,
+    fetchProfileError,
+    isLoadingProfileData,
+    isProfileFetchSuccess,
+    isProfileFetchError,
+    setProfile,
+    setContextLoading,
+  ]);
 
   return (
     <nav className="bg-blue-600 text-white p-4 shadow-md">
@@ -14,18 +77,35 @@ const Navbar: React.FC = () => {
           Charlotte Job Board
         </Link>
         <div className="flex items-center space-x-4">
-          <Link to="/" className="px-3 py-2 rounded hover:bg-blue-700">Home</Link>
+          <Link to="/" className="px-3 py-2 rounded hover:bg-blue-700">
+            Home
+          </Link>
           {/* <a href="#" className="px-3 py-2 rounded hover:bg-blue-700">Post a Job</a> */}
-          
-          {isLoading && <p className="px-3 py-2">Loading...</p>}
-          
-          {!isLoading && !isAuthenticated && (
-            <LoginButton />
-          )}
-          
-          {!isLoading && isAuthenticated && user && (
+
+          {isLoadingAuth && <p className="px-3 py-2">Loading Auth...</p>}
+
+          {!isLoadingAuth && !isAuthenticated && <LoginButton />}
+
+          {!isLoadingAuth && isAuthenticated && user && (
             <>
-              <span className="px-3 py-2">Hello, {user.name || user.email}</span>
+              <Link
+                to="/profile"
+                className="px-3 py-2 rounded hover:bg-blue-700"
+              >
+                Profile
+              </Link>
+              {/* Admin Dashboard link only for admins */}
+              {userProfile && userProfile.role === "admin" && (
+                <Link
+                  to="/admin"
+                  className="px-3 py-2 rounded hover:bg-green-700"
+                >
+                  Admin Dashboard
+                </Link>
+              )}
+              <span className="px-3 py-2">
+                Hello, {user.name || user.email}
+              </span>
               <LogoutButton />
             </>
           )}

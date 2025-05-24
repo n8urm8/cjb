@@ -1,7 +1,20 @@
-from sqlalchemy import Column, Integer, String, Date, Text
+from sqlalchemy import Column, Integer, String, Date, Text, DateTime # Added DateTime
 from sqlalchemy.orm import relationship # relationship might be used later for foreign keys
 from .database import Base
 import datetime
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String, unique=True, index=True, nullable=False) # From Auth0 or other auth provider
+    email = Column(String, unique=True, index=True, nullable=False)
+    full_name = Column(String, nullable=True)
+    profile_picture_url = Column(String, nullable=True)
+    bio = Column(Text, nullable=True)
+    role = Column(String, nullable=False, default="user")  # Added role
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
 class Job(Base):
     __tablename__ = "jobs"

@@ -4,6 +4,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import jobs as jobs_router 
+from routers import user_profiles as user_profiles_router # Added user_profiles_router
 from db.database import Base, engine # Import Base and engine from our db setup
 
 # Create database tables if they don't exist
@@ -35,6 +36,7 @@ app.add_middleware(
 
 # --- Include Routers ---
 app.include_router(jobs_router.router) # Include the jobs router
+app.include_router(user_profiles_router.router) # Include the user_profiles router
 
 @app.get("/")
 async def read_root():
