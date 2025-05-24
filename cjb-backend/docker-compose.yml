@@ -2,17 +2,33 @@ version: "3.8"
 
 services:
   db:
-    image: postgres:15-alpine # You can choose a specific version
+    image: postgres:15-alpine
     container_name: cjb_postgres_db
     restart: always
     environment:
-      POSTGRES_USER: cjb # Change this
-      POSTGRES_PASSWORD: cjb # Change this
-      POSTGRES_DB: cjb_db # Change this
+      POSTGRES_USER: cjb
+      POSTGRES_PASSWORD: cjb
+      POSTGRES_DB: cjb_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: cjb_backend
+    restart: always
+    environment:
+      DATABASE_URL: postgresql+psycopg2://cjb:cjb@db:5432/cjb_db
+      # Add any other env vars your backend needs here, or mount .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    # Optionally mount code for live reload in dev:
+    volumes:
+      - .:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 volumes:
   postgres_data:

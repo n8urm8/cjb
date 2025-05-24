@@ -77,9 +77,6 @@ const Navbar: React.FC = () => {
           Charlotte Job Board
         </Link>
         <div className="flex items-center space-x-4">
-          <Link to="/" className="px-3 py-2 rounded hover:bg-blue-700">
-            Home
-          </Link>
           {/* <a href="#" className="px-3 py-2 rounded hover:bg-blue-700">Post a Job</a> */}
 
           {isLoadingAuth && <p className="px-3 py-2">Loading Auth...</p>}
