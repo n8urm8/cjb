@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* You can customize this font stack if needed */
+  /* Tailwind's Preflight (from @tailwind base) will handle basic body margins and background. */
+  /* Apply background colors and text colors using Tailwind utilities directly on your components or a main layout div. */
+  /* For example, in App.tsx, you might have <div className="App bg-gray-100 text-gray-900 min-h-screen"> */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
