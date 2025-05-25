@@ -20,6 +20,7 @@ class Job(Base):
     __tablename__ = "jobs"
 
     id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String, nullable=False, index=True)  # Auth0 user ID, links to UserProfile.user_id
     title = Column(String, index=True, nullable=False)
     company = Column(String, nullable=False)
     location = Column(String, nullable=False)
@@ -27,3 +28,5 @@ class Job(Base):
     posted_date = Column(Date, default=datetime.date.today, nullable=False)
     job_type = Column(String, nullable=False) # e.g., "Full-time", "Part-time", "Contract"
     url = Column(String, nullable=True)
+    # Optionally, set up relationship for ORM convenience:
+    # poster = relationship("UserProfile", primaryjoin="Job.user_id==UserProfile.user_id", backref="jobs")
