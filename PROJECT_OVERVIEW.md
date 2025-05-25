@@ -59,6 +59,7 @@ A hyper-focused platform connecting software engineers (frontend & fullstack) wi
   - Styling: Tailwind CSS
   - State Management: Zustand or Redux Toolkit
   - Routing: React Router
+  - Tanstack Router for api state management
 - **Backend:** Python with FastAPI (Alternative: Node.js with Express.js)
 - **Database:** PostgreSQL
 - **AI Components:**

@@ -70,7 +70,14 @@ const JobDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-8 bg-white shadow-lg rounded-lg mt-8">
+    <div
+      className="container mx-auto p-8 bg-white shadow-lg rounded-lg mt-8"
+      style={{
+        background:
+          "linear-gradient(135deg, var(--color-white) 0%, var(--color-primary-light) 100%)",
+        color: "var(--color-black)",
+      }}
+    >
       <h1 className="text-4xl font-bold text-blue-700 mb-4">{job.title}</h1>
       <p className="text-xl text-gray-800 mb-2">
         <strong>Company:</strong> {job.company}
@@ -101,4 +108,3 @@ const JobDetailPage: React.FC = () => {
 };
 
 export default JobDetailPage;
-

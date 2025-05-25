@@ -9,7 +9,14 @@ import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div
+        className="App min-h-screen"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--color-white) 0%, var(--color-primary-light) 100%)",
+          color: "var(--color-black)",
+        }}
+      >
         <Navbar />
         <Routes>
           <Route path="/" element={<JobListingsPage />} />

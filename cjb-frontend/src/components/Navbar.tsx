@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
+import { CircuitBoard } from "lucide-react";
 import LoginButton from "./auth/LoginButton";
 import LogoutButton from "./auth/LogoutButton";
 import { useUserProfile } from "../context/UserProfileContext";
@@ -79,8 +80,17 @@ const Navbar: React.FC = () => {
       className="p-4 shadow-md"
     >
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold" style={{ color: "var(--color-white)" }}>
-          Charlotte Job Board
+        <Link
+          to="/"
+          className="flex items-center space-x-2 text-2xl font-bold group"
+          style={{ color: "var(--color-white)" }}
+        >
+          <CircuitBoard
+            size={32}
+            strokeWidth={2.2}
+            className="transition-transform group-hover:rotate-12"
+          />
+          <span>Charlotte Job Board</span>
         </Link>
         <div className="flex items-center space-x-4">
           {/* <a href="#" className="px-3 py-2 rounded hover:bg-blue-700">Post a Job</a> */}
@@ -97,8 +107,13 @@ const Navbar: React.FC = () => {
                 style={{
                   color: "var(--color-white)",
                 }}
-                onMouseOver={e => (e.currentTarget.style.background = 'var(--color-primary-light)')}
-                onMouseOut={e => (e.currentTarget.style.background = 'transparent')}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.background =
+                    "var(--color-primary-light)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.background = "transparent")
+                }
               >
                 Profile
               </Link>
@@ -111,8 +126,14 @@ const Navbar: React.FC = () => {
                     color: "var(--color-black)",
                     background: "var(--color-secondary)",
                   }}
-                  onMouseOver={e => (e.currentTarget.style.background = 'var(--color-primary-light)')}
-                  onMouseOut={e => (e.currentTarget.style.background = 'var(--color-secondary)')}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.background =
+                      "var(--color-primary-light)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.background =
+                      "var(--color-secondary)")
+                  }
                 >
                   Admin Dashboard
                 </Link>

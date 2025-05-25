@@ -19,10 +19,10 @@ interface JobCardProps {
 
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
   return (
-    <div className="bg-card text-card-foreground border rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col h-full">
+    <div style={{ background: "var(--color-white)", color: "var(--color-black)", border: "1px solid var(--color-primary-light)" }} className="rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col h-full">
       {/* Main content area, allows description to grow */}
       <div className="flex-grow">
-        <h2 className="text-xl font-semibold text-card-foreground mb-2">{job.title}</h2>
+        <h2 className="text-xl font-semibold mb-2" style={{ color: "var(--color-primary)" }}>{job.title}</h2>
         <p className="text-xs text-muted-foreground mb-1">
           Posted on: {job.posted_date}
         </p>
