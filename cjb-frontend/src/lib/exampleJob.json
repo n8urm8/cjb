@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1683830891",
+    "date_posted": "2025-05-21T12:47:24",
+    "date_created": "2025-05-21T13:32:42.524148",
+    "title": "Senior Software Engineer (Frontend)",
+    "organization": "Home Solutions",
+    "organization_url": null,
+    "date_validthrough": null,
+    "locations_raw": [
+      {
+        "@type": "Place",
+        "name": "Charlotte, NC",
+        "address": {
+          "@type": "PostalAddress",
+          "name": "Charlotte, NC",
+          "addressCountry": "",
+          "addressLocality": "Charlotte, NC"
+        }
+      }
+    ],
+    "locations_alt_raw": null,
+    "location_type": null,
+    "location_requirements_raw": null,
+    "salary_raw": null,
+    "employment_type": null,
+    "url": "https://job-boards.greenhouse.io/homesolutions/jobs/4567594005",
+    "source_type": "ats",
+    "source": "greenhouse",
+    "source_domain": "job-boards.greenhouse.io",
+    "organization_logo": null,
+    "cities_derived": ["Charlotte"],
+    "regions_derived": ["North Carolina"],
+    "countries_derived": ["United States"],
+    "locations_derived": ["Charlotte, North Carolina, United States"],
+    "timezones_derived": ["America/New_York"],
+    "lats_derived": [35.2083],
+    "lngs_derived": [-80.8303],
+    "remote_derived": false,
+    "description_text": "Location: Raleigh or Charlotte, NC or Remote\nAbout the Role\nHome Solutions is seeking a passionate Senior Software Engineer to join our small, agile team. If you live and breathe modern web development, love coming up with creative technical solutions, and have strong expertise in component-based frameworks and static site generators, this role is perfect for you. The ideal candidate will have proven experience in developing responsive, performant web applications, working with headless CMS systems and SQL databases, and will be excited to contribute to a dynamic and growing company with a high \nYour Day-to-Day\nReporting to the Director of Software Engineering, the Senior Software Engineer will:\nDesign and develop responsive, high-performance web applications using modern component-based frameworks (we use React) and static site generators (we use Next.js)\nBuild and maintain reusable component libraries to ensure consistency across applications\nImplement and manage headless CMS integrations (we use Payload CMS)\nWrite and optimize SQL queries and manage database migrations (we use PostgreSQL/Neon Serverless DB)\nOptimize applications for maximum speed and scalability across various browsers and devices\nImplement and maintain best practices for web accessibility standards (WCAG)\nPartner with business teams to troubleshoot, replicate production issues, and implement solutions\nDrive continuous improvement through code reviews, mentorship, and knowledge sharing\nMonitor applications and proactively optimize and resolve issues\nDemonstrate ownership by seeing projects through from conception to delivery\nAbout You\n4-6+ years of experience with modern frontend development\nStrong proficiency with component-based frameworks (React, Vue, Angular, or similar)\nExperience with static site generators (Next.js, Nuxt, Gatsby, or similar)\nExpertise in JavaScript/TypeScript, HTML, and CSS (CSS Modules, Styled Components, or similar)\nExperience working with headless CMS systems\nProficiency in writing SQL queries and working with relational databases\nUnderstanding of RESTful APIs and GraphQL\nExperience with version control systems (Git)\nFamiliarity with CI/CD pipelines and deployment processes\nKnowledge of web performance optimization and accessibility standards\nA demonstrated history of ownership and delivering results\nAlignment with our core values: Grow Without Limits, Get After It, Act With Focus, and Build The Team.\nNice to have:\nExperience with Vercel or similar deployment platforms\nSpecific experience with Payload CMS\nExperience with PostgreSQL specifically\nBackground in building and maintaining component libraries\nUnderstanding of SSR, SSG, and ISR rendering strategies\nWhile we’re looking for some specific experiences and skillsets, nothing is more important than a strong can-do attitude, resilience in the face of change and uncertainty, and a passion for learning and creating.\nAbout Us\nLaunched in Fall 2017, Home Solutions targets the rapidly digitizing home services vertical and matches homeowners with the right service provider to meet their needs. Our purpose is simple: Simplify Home Services. We aspire to transform the way homeowners and end-service providers engage. Through our media, alerts, and brand solutions, Home Solutions has a proprietary audience of 47M+ homeowners and prime real estate in search engines. We are on a mission to make homeownership easier by creating high quality content that pairs consumers with providers in a range of related categories.\nHome Solutions was incubated within Three Ships, a growth equity firm that launches and invests in digital companies, builds great leadership teams, and helps them rapidly scale. The Three Ships portfolio includes several businesses and over 50+ websites that help consumers navigate choices through online marketplaces. Headquartered in Raleigh and Charlotte, we are always looking to find the right people to help us continue to grow this business and place a high value on teammates who demonstrate our core values: Get After It, Grow Without Limits, Act With Focus and Build the Team. \nWhy You Should Join Us\nResults: Home Solutions is the fastest-growing marketplace company in the home services category.\nOpportunity: Home services is a $600 billion market that largely still operates like it’s 1999. During the next decade, we anticipate a huge digital transformation in the category, and marketplace companies will lead the way.\nOwnership & Impact: We seek talented people with the desire to own and run parts of the business that drive company performance. Leadership is fully aligned and incentivized around our growth-focused mission. \nExposure & Learning: You will have a front-row seat in growing a business. Your teammates have built and sold companies, managed 100s of employees, and run campaigns with Fortune 500 brands. The opportunity to build new skills and learn from smart people is endless.\nCareer Growth: There is no cap on growth, promotions, or the opportunity to own and put your stamp on important projects. Prove your value and you will be rewarded accordingly.\nStability: We are privately owned, have no debt, and have significant cash to invest – we’re “rock-solid” financially.\nFun: The team has a high bar for excellence, but also a real interest in each other and making work fun.\nThe Package\nWe offer a competitive base salary based on experience. As a full-time team member at Home Solutions, you'll also enjoy a comprehensive benefits package, including health, medical, and vision insurance, a 401(k) match, short-term disability coverage, and a cell phone reimbursement. Additionally, we support your well-being and growth with flexible time off, a bi-annual $500 Relax & Recharge bonus, a learning and development stipend, and a Charity Match program to give back to causes you care about.\nEEOC Statement\nAll applicants are considered without regard to race, color, religion, sex, national origin, age, disability, veteran status, gender identity, or any other discriminatory factors. Please note that we do not provide immigration sponsorship for this role. All offers are subject to a background check."
+  }
+]
