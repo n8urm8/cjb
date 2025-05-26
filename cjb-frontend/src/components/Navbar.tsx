@@ -102,6 +102,22 @@ const Navbar: React.FC = () => {
           {!isLoadingAuth && isAuthenticated && user && (
             <>
               <Link
+                to="/jobs/add"
+                className="px-3 py-2 rounded transition"
+                style={{
+                  color: "var(--color-white)",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.background =
+                    "var(--color-primary-light)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.background = "transparent")
+                }
+              >
+                Post a Job
+              </Link>
+              <Link
                 to="/profile"
                 className="px-3 py-2 rounded transition"
                 style={{

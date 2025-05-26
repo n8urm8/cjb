@@ -73,8 +73,6 @@ const JobDetailPage: React.FC = () => {
     <div
       className="container mx-auto p-8 bg-white shadow-lg rounded-lg mt-8"
       style={{
-        background:
-          "linear-gradient(135deg, var(--color-white) 0%, var(--color-primary-light) 100%)",
         color: "var(--color-black)",
       }}
     >

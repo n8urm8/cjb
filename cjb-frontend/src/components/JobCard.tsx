@@ -1,5 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 
 export interface Job {
@@ -11,6 +19,7 @@ export interface Job {
   posted_date: string;
   job_type: string;
   url?: string;
+  user_id?: string; // Add user_id for ownership checks
 }
 
 interface JobCardProps {
@@ -19,22 +28,23 @@ interface JobCardProps {
 
 const JobCard: React.FC<JobCardProps> = ({ job }) => {
   return (
-    <div style={{ background: "var(--color-white)", color: "var(--color-black)", border: "1px solid var(--color-primary-light)" }} className="rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col h-full">
-      {/* Main content area, allows description to grow */}
-      <div className="flex-grow">
-        <h2 className="text-xl font-semibold mb-2" style={{ color: "var(--color-primary)" }}>{job.title}</h2>
-        <p className="text-xs text-muted-foreground mb-1">
+    <Card className="flex flex-col h-full hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+      <CardHeader>
+        <CardTitle className="text-xl mb-1">{job.title}</CardTitle>
+        <span className="text-xs text-muted-foreground">
           Posted on: {job.posted_date}
-        </p>
-        <p className="text-sm text-muted-foreground mb-3">
-          {job.location} - <span className="text-primary font-semibold">{job.job_type}</span>
-        </p>
-        <p className="text-sm text-card-foreground/90 line-clamp-3 mb-4">
+        </span>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2 flex-grow">
+        <div className="text-sm text-muted-foreground">
+          {job.location} -{" "}
+          <span className="text-primary font-semibold">{job.job_type}</span>
+        </div>
+        <CardDescription className="line-clamp-3 mb-2">
           {job.description}
-        </p>
-      </div>
-      {/* Button area, pushed to the bottom */}
-      <div className="mt-auto pt-4"> {/* pt-4 provides space above button if content is short */}
+        </CardDescription>
+      </CardContent>
+      <CardFooter className="mt-auto pt-4">
         {job.url ? (
           <Button asChild className="w-full">
             <a href={job.url} target="_blank" rel="noopener noreferrer">
@@ -46,8 +56,8 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
             <Link to={`/jobs/${job.id}`}>View Details</Link>
           </Button>
         )}
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 

@@ -1,16 +1,20 @@
 import React, { useState, useMemo } from "react"; // Removed useEffect
 import { useAuth0, AuthenticationError } from "@auth0/auth0-react";
-import { useFetchJobs, useCreateProtectedJob } from "../hooks/jobHooks"; // Corrected path
+import { useFetchJobs, useCreateProtectedJob, useDeleteJob } from "../hooks/jobHooks"; // Corrected path
 import JobCard, { type Job } from "../components/JobCard";
 import { Button } from "@/components/ui/button"; // Import Button for consistency
 import SearchBar from "../components/SearchBar";
+import { useNavigate } from "react-router";
 
 // Sample job data has been removed, data will be fetched from API
 // The sampleJobs array has been completely removed.
 
 const JobListingsPage: React.FC = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const { isAuthenticated } = useAuth0(); // Removed unused getAccessTokenSilently
+  const { isAuthenticated, user } = useAuth0(); // user.sub = user_id
+  const userId = user?.sub;
+  const userRole = user?.role;
   // testResponse will now be derived from useMutation's state or not used directly if we update UI based on mutation status
   const [testResponseDisplay, setTestResponseDisplay] = useState<string | null>(
     null
@@ -96,9 +100,13 @@ const JobListingsPage: React.FC = () => {
         }}
       />
 
-      {/* Test button for protected route */}
+      {/* Add Job button for authenticated users */}
       {isAuthenticated && (
-        <div className="my-6 text-center">
+        <div className="my-6 flex flex-col items-center gap-2">
+          <Button onClick={() => navigate("/jobs/add")} variant="default">
+            + Add New Job
+          </Button>
+          {/* Test button for protected route (dev only) */}
           <Button onClick={handleCreateProtectedJob} variant="secondary">
             Test Create Protected Job
           </Button>
@@ -142,7 +150,7 @@ const JobListingsPage: React.FC = () => {
           )}
         </div>
       )}
-      {/* End of test button */}
+      {/* End of add/test buttons */}
 
       {isLoadingJobs && (
         <p
@@ -168,16 +176,52 @@ const JobListingsPage: React.FC = () => {
       )}
       {!isLoadingJobs && !isErrorJobs && filteredJobs.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredJobs.map(
-            (
-              job: Job // Added type for job
-            ) => (
-              <JobCard key={job.id} job={job} />
-            )
-          )}
+          {filteredJobs.map((job: Job) => {
+            // Show edit/delete if user is owner or admin
+            const isOwner = userId && job.user_id && userId === job.user_id;
+            const isAdmin = userRole === "admin";
+            return (
+              <div key={job.id} className="relative group">
+                <JobCard job={job} />
+                {(isOwner || isAdmin) && (
+                  <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => navigate(`/jobs/${job.id}/edit`)}
+                    >
+                      Edit
+                    </Button>
+                    <DeleteJobButton jobId={job.id} />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
+  );
+};
+
+// Inline component for delete button with confirmation and loading/error state
+const DeleteJobButton: React.FC<{ jobId: number }> = ({ jobId }) => {
+  const deleteJobMutation = useDeleteJob();
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this job? This action cannot be undone.")) {
+      deleteJobMutation.mutate({ jobId });
+    }
+  };
+  return (
+    <Button
+      size="sm"
+      variant="destructive"
+      onClick={handleDelete}
+      disabled={deleteJobMutation.isPending}
+      title="Delete job"
+    >
+      {deleteJobMutation.isPending ? "Deleting..." : "Delete"}
+    </Button>
   );
 };
 
